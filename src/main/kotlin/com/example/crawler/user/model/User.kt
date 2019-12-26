@@ -6,8 +6,22 @@ import javax.persistence.*
 data class User(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        val id: Long,
+        val id: Long? = null,
 
-        @Column(name="chat_id", nullable = false)
-        val chatId: String
-)
+        @Column(name = "chat_id", nullable = false, unique = true)
+        val chatId: Long,
+
+        @Column(name = "first_name")
+        var firstName: String,
+
+        @Column(name = "last_name")
+        var lastName: String,
+
+        @Enumerated(value = EnumType.STRING)
+        @Column(name = "last_step", nullable = false)
+        var lastStep: LastStep = LastStep.DONE
+) {
+    fun changeLastStep(lastStep: LastStep) {
+        this.lastStep = lastStep
+    }
+}
