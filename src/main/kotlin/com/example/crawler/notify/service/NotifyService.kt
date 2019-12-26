@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional
 @Transactional
 class NotifyService(private val notifyRepository: NotifyRepository, private val userService: UserService) {
     fun registerKeyword(user: User, keyword: String): Notify {
-        user.changeLastStep(LastStep.DONE)
+        userService.changeLastStep(user.chatId, LastStep.DONE)
         val foundNotify = notifyRepository.findByUserAndKeyword(user = user, keyword = keyword)
         foundNotify?.let { return it }
 
