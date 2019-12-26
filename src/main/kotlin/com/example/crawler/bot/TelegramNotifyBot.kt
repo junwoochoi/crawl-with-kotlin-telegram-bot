@@ -57,7 +57,7 @@ class TelegramNotifyBot(
 
         if (update.message.text == "등록한 키워드 목록 확인") {
             val keywordList = userService.getKeywordList(chatId = message.chatId)
-            val messageToSend = """현재까지 등록하신 키워드 입니다. [ ${keywordList.joinToString(",")} ]"""
+            val messageToSend = "현재까지 등록하신 키워드 입니다. [ ${keywordList.joinToString(",")} ]"
             sendMessage(message = messageToSend,
                     chatId = message.chatId,
                     messageId = message.messageId)
@@ -67,7 +67,7 @@ class TelegramNotifyBot(
         if (userService.isWaitingInput(message.chatId)) {
             logger.info("입력 대기 상태에서 입력 받음.")
             notifyService.registerKeyword(user = userService.findUser(message.chatId), keyword = message.text)
-            val messageForUser = """키워드 [${message.text}]가 알림 키워드로 등록 되었습니다.", message.chatId, message.messageId)"""
+            val messageForUser = """키워드 [${message.text}]가 알림 키워드로 등록 되었습니다."""
             sendMessage(message = messageForUser, chatId = message.chatId, messageId = message.messageId)
             return
         }
