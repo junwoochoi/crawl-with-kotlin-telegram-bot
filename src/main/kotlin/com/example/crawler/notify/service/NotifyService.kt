@@ -1,5 +1,6 @@
 package com.example.crawler.notify.service
 
+import com.example.crawler.notify.dto.NotifyMessage
 import com.example.crawler.notify.model.Notify
 import com.example.crawler.notify.repository.NotifyRepository
 import com.example.crawler.user.model.LastStep
@@ -17,5 +18,9 @@ class NotifyService(private val notifyRepository: NotifyRepository, private val 
         foundNotify?.let { return it }
 
        return notifyRepository.save(Notify(user=user, keyword = keyword))
+    }
+
+    fun findAll() : List<Notify>{
+        return notifyRepository.findAll()
     }
 }

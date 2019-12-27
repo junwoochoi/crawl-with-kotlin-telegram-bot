@@ -75,9 +75,11 @@ class TelegramNotifyBot(
 
     }
 
-    private fun sendMessage(message: String, chatId: Long, messageId: Int) {
+    fun sendMessage(message: String, chatId: Long, messageId: Int? = null) {
         val sendMessage = SendMessage()
-        sendMessage.replyToMessageId = messageId
+        messageId?.let {
+            sendMessage.replyToMessageId = it
+        }
         sendMessage.chatId = chatId.toString()
         sendMessage.text = message
 
