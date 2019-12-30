@@ -33,3 +33,4 @@ out/
 .vscode/
 
 application-token.yml
+**/src/main/resources/application-token.yml
