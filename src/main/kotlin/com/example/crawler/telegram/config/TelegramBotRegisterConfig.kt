@@ -1,4 +1,4 @@
-package com.example.crawler.config
+package com.example.crawler.telegram.config
 
 import com.example.crawler.bot.TelegramNotifyBot
 import org.springframework.context.annotation.Configuration

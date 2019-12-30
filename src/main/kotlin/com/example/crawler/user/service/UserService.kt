@@ -1,7 +1,6 @@
 package com.example.crawler.user.service
 
-import com.example.crawler.notify.model.Notify
-import com.example.crawler.notify.repository.NotifyRepository
+import com.example.crawler.notification.keyword.repository.NotificationKeywordRepository
 import com.example.crawler.user.model.LastStep
 import com.example.crawler.user.model.User
 import com.example.crawler.user.repository.UserRepository
@@ -10,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 @Transactional
-class UserService(private val userRepository: UserRepository, private val notifyRepository: NotifyRepository) {
+class UserService(private val userRepository: UserRepository, private val notificationRepository: NotificationKeywordRepository) {
 
     fun createUser(chatId: Long, firstName: String = "", lastName: String = ""): User {
         val findUser = userRepository.findByChatId(chatId)
@@ -38,7 +37,7 @@ class UserService(private val userRepository: UserRepository, private val notify
     fun getKeywordList(chatId: Long): List<String> {
         val findUser = userRepository.findByChatId(chatId)
         findUser?.let { user ->
-            return notifyRepository.findByUser(user).map { it.keyword }
+            return notificationRepository.findByUser(user).map { it.keyword }
         }
 
         return emptyList()

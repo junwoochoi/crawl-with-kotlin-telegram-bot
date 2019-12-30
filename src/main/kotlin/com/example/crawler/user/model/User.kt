@@ -1,5 +1,6 @@
 package com.example.crawler.user.model
 
+import com.example.crawler.global.model.BaseTimeEntity
 import javax.persistence.*
 
 @Entity
@@ -20,7 +21,7 @@ data class User(
         @Enumerated(value = EnumType.STRING)
         @Column(name = "last_step", nullable = false)
         var lastStep: LastStep = LastStep.DONE
-) {
+) : BaseTimeEntity() {
     fun changeLastStep(lastStep: LastStep) {
         this.lastStep = lastStep
     }

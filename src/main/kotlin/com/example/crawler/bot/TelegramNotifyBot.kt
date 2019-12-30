@@ -1,7 +1,7 @@
 package com.example.crawler.bot
 
-import com.example.crawler.config.TelegramProperties
-import com.example.crawler.notify.service.NotifyService
+import com.example.crawler.notification.keyword.service.NotificationService
+import com.example.crawler.telegram.config.TelegramProperties
 import com.example.crawler.user.model.LastStep
 import com.example.crawler.user.service.UserService
 import org.slf4j.Logger
@@ -16,7 +16,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.Keyboard
 @Component
 class TelegramNotifyBot(
         private val telegramProperties: TelegramProperties,
-        private val notifyService: NotifyService,
+        private val notificationService: NotificationService,
         private val userService: UserService) : TelegramLongPollingBot() {
 
     private val logger: Logger = LoggerFactory.getLogger(this.javaClass)
@@ -66,7 +66,7 @@ class TelegramNotifyBot(
 
         if (userService.isWaitingInput(message.chatId)) {
             logger.info("입력 대기 상태에서 입력 받음.")
-            notifyService.registerKeyword(user = userService.findUser(message.chatId), keyword = message.text)
+            notificationService.registerKeyword(user = userService.findUser(message.chatId), keyword = message.text)
             val messageForUser = """키워드 [${message.text}]가 알림 키워드로 등록 되었습니다."""
             sendMessage(message = messageForUser, chatId = message.chatId, messageId = message.messageId)
             return
