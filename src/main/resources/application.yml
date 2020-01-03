@@ -9,7 +9,10 @@ spring:
       enabled: true
       path: /h2-console
 
-
+telegram:
+  bot:
+    username: eomisae-notify-bot
+    key: key
 
 ---
 
