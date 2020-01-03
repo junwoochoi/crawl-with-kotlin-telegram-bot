@@ -77,6 +77,20 @@ class TelegramNotifyBot(
 
     fun sendMessage(message: String, chatId: Long, messageId: Int? = null) {
         val sendMessage = SendMessage()
+        sendMessage.enableWebPagePreview()
+        messageId?.let {
+            sendMessage.replyToMessageId = it
+        }
+        sendMessage.chatId = chatId.toString()
+        sendMessage.text = message
+
+        execute(sendMessage)
+    }
+
+    fun sendMarkdownMessage(message: String, chatId: Long, messageId: Int? = null){
+        val sendMessage = SendMessage()
+        sendMessage.enableMarkdown(true)
+
         messageId?.let {
             sendMessage.replyToMessageId = it
         }
