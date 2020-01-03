@@ -31,7 +31,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("com.h2database:h2")
     implementation("org.jsoup:jsoup:1.12.1")
-    implementation("org.telegram:telegrambots:4.4.0.1")
+    implementation("org.telegram:telegrambots-spring-boot-starter:4.1.2")
 //	runtimeOnly("org.postgresql:postgresql")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
