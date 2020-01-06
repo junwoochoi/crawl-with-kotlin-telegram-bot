@@ -18,7 +18,7 @@ class NotificationListener(private val telegramNotifyBot: TelegramNotifyBot,
 
         telegramNotifyBot.sendMarkdownMessage(
                 """*${notificationKeyword.keyword}*의 새로운 게시글이 업로드 되었습니다!  
-[게시글](${url})을 확인해보세요!
+[${notificationEvent.element.text()}](${url})을 확인해보세요!
 """,
                 notificationEvent.chatId)
 
