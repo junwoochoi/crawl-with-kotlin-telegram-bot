@@ -4,6 +4,8 @@ server:
 spring:
   profiles:
     include: token
+  jpa:
+    open-in-view: false
   h2:
     console:
       enabled: true
