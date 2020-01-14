@@ -14,11 +14,6 @@ telegram:
     username: eomisae-notify-bot
     key: key
 
----
-
-spring:
-  profiles: local
-
 
 logging:
   level:
