@@ -25,7 +25,7 @@ class NotificationService(
         val foundNotify = notificationKeywordRepository.findByUserAndKeyword(user = user, keyword = keyword)
         foundNotify?.let { return it }
 
-        return notificationKeywordRepository.save(NotificationKeyword(user = user, url = keyword))
+        return notificationKeywordRepository.save(NotificationKeyword(user = user, keyword = keyword))
     }
 
     fun findAll(): List<NotificationKeyword> {
@@ -48,10 +48,10 @@ class NotificationService(
     }
 
     private fun checkShouldSendNotification(element: Element, notificationKeyword: NotificationKeyword): Boolean {
-        if (!element.text().contains(notificationKeyword.url)) {
+        if (!element.text().contains(notificationKeyword.keyword)) {
             return false
         }
-        val isAlreadyNotified = notificationHistoryRepository.existsByNotificationKeywordAndUrl(notificationKeyword, element.attr("href"))
+        val isAlreadyNotified = notificationHistoryRepository.existsByNotificationKeywordAndUrl(notificationKeyword = notificationKeyword, url= element.attr("href"))
         return !isAlreadyNotified
     }
 }

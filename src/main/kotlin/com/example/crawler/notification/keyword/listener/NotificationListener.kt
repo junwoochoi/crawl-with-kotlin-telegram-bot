@@ -19,7 +19,7 @@ class NotificationListener(private val telegramNotifyBot: TelegramNotifyBot,
         val url = notificationEvent.element.attr("href")
 
         telegramNotifyBot.sendMarkdownMessage(
-                """*${notificationKeyword.url}*의 새로운 게시글이 업로드 되었습니다!  
+                """*${notificationKeyword.keyword}*의 새로운 게시글이 업로드 되었습니다!  
 [${notificationEvent.element.text()}](${url})을 확인해보세요!
 """,
                 notificationEvent.chatId)

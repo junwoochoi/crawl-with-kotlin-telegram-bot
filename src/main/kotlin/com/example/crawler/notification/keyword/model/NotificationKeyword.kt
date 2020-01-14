@@ -15,6 +15,6 @@ data class NotificationKeyword(
         val user: User,
 
         @Column(name = "keyword", nullable = false)
-        val url: String
+        val keyword: String
 
 ) : BaseTimeEntity()
