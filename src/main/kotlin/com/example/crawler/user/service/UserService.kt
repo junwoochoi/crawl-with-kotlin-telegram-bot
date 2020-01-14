@@ -37,7 +37,7 @@ class UserService(private val userRepository: UserRepository, private val notifi
     fun getKeywordList(chatId: Long): List<String> {
         val findUser = userRepository.findByChatId(chatId)
         findUser?.let { user ->
-            return notificationRepository.findByUser(user).map { it.keyword }
+            return notificationRepository.findByUser(user).map { it.url }
         }
 
         return emptyList()
